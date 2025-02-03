@@ -17,7 +17,7 @@ Vue.component('product', {
                     <option v-for="size in sizes">{{size}}</option>
                 </select>
                 <button v-on:click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Добавить в корзину</button>
-                <button v-on:click="removeFromCart">Удалить из корзины</button>
+                <button v-on:click="removeToCart">Удалить из корзины</button>
                 <br>
                 <a v-bind:href="link">Похожее</a>
                 <p>User is premium: {{ premium }}</p>
@@ -55,8 +55,8 @@ Vue.component('product', {
         addToCart() {
             this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },             
-        removeFromCart(index) {
-            this.cart -= 1
+        removeToCart(index) {
+            this.$emit('remove-to-cart', this.variants[this.selectedVariant].variantId);
         },
         updateProduct(index) {
             this.selectedVariant = index;
@@ -118,6 +118,9 @@ let app = new Vue({
     methods: {
         updateCart(id) {
             this.cart.push(id);
+        },
+        eraseCart(id) {
+            this.cart.pop(id)
         }
     } 
  }) 
