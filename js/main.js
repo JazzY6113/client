@@ -22,6 +22,9 @@ let app = new Vue({
         methods: {
             addToCart() {
                 this.cart += 1
+            },
+            removeToCart() {
+                this.cart -= 1
             }
          },         
          updateProduct(variantImage) {
