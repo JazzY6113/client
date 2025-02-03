@@ -23,9 +23,6 @@ Vue.component('product', {
                 <p>User is premium: {{ premium }}</p>
                 <p>Shipping: {{ shipping }}</p>
             </div>
-            <div class="cart">
-                <p>Корзина({{ cart }})</p>
-            </div>
        </div>
   `,
     data() {
@@ -52,13 +49,12 @@ Vue.component('product', {
                 },
             ],
             sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-            cart: 0,
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1
-        },
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
+        },             
         removeFromCart(index) {
             this.cart -= 1
         },
@@ -116,6 +112,12 @@ Vue.component('product-detail', {
 let app = new Vue({
     el: '#app',
     data: {
-        premium: true
-    }
+        premium: true,
+        cart: []
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id);
+        }
+    } 
  }) 
