@@ -96,7 +96,7 @@
     <p>
     <label>Вы бы порекомендовали этот продукт?</label>
     <label>
-        <input type="radio" v-model="recommend" value="yes">Да
+        <input type="radio" v-model="recommend" value="yes" :disabled="rating < 3">Да
     </label>
     <label>
         <input type="radio" v-model="recommend" value="no">Нет
@@ -119,23 +119,18 @@
     },
     methods:{
         onSubmit() {
-            this.errors = [];
-
-            if (this.rating && this.rating < 3) {
-                this.errors.push("Оценка должна быть 3 или выше, чтобы оставить отзыв.");
-                return;
-            }
-
-            if(this.name && this.review && this.rating) {
+            if(this.name && this.review && this.rating && this.rating) {
                 let productReview = {
                     name: this.name,
                     review: this.review,
-                    rating: this.rating
+                    rating: this.rating,
+                    recommend: this.recommend
                 }
                 eventBus.$emit('review-submitted', productReview)
                 this.name = null
                 this.review = null
                 this.rating = null
+                this.recommend = null
             } else {
                 if(!this.name) this.errors.push("Требуется имя.")
                 if(!this.review) this.errors.push("Требуется комментарий.")
