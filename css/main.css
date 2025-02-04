@@ -14,6 +14,8 @@ body {
     display: flex;
     flex-flow: wrap;
     padding: 1rem;
+    background-color: aliceblue;
+    display: flex;
 }
 
 img {
@@ -39,11 +41,17 @@ img {
     margin-top: 5px;
 }
 
+.product-color {
+    display: flex;
+    gap: 10px;
+}
+
 .cart {
     margin-right: 25px;
     float: right;
     border: 1px solid #d8d8d8;
     padding: 5px 20px;
+    background-color: bisque;
 }
 
 button {
@@ -90,4 +98,18 @@ textarea {
 
 .OutOfStock {
     text-decoration: line-through;
+}
+
+a {
+    text-decoration: none;
+    color: red;
+}
+
+.product-image > img {
+    border-radius: 30px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2), -12px -12px 2px 1px rgba(0, 0, 255, .2);
+}
+
+.color-box {
+    border-radius: 30px;
 }

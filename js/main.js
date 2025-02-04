@@ -2,9 +2,9 @@
 
     eventBus.$on('review-submitted', function (productReview) {
         this.reviews.push(productReview)
-     }.bind(this))
+    }.bind(this))
     
-     Vue.component('product-tabs', {
+    Vue.component('product-tabs', {
         props: {
             reviews: {
                 type: Array,
@@ -150,7 +150,6 @@
             <div class="product-image">
                 <img :src="image" :alt="altText"/>
             </div>
-    
             <div class="product-info">
                 <h1>{{ title }}</h1>
                 <p>{{ description }}</p>
@@ -165,6 +164,7 @@
                 </select>
                 <a v-bind:href="link">Похожее</a>
                 <p>Доставка: {{ shipping }}</p>
+                <div class="product-color">
                 <div
                         class="color-box"
                         v-for="(variant, index) in variants"
@@ -172,6 +172,7 @@
                         :style="{ backgroundColor:variant.variantColor }"
                         @mouseover="updateProduct(index)"
                 ></div>
+                </div>
                 
                 <button v-on:click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Добавить в корзину</button>
                 <button v-on:click="removeToCart">Удалить из корзины</button>
