@@ -119,6 +119,13 @@
     },
     methods:{
         onSubmit() {
+            this.errors = [];
+
+            if (this.rating && this.rating < 3) {
+                this.errors.push("Оценка должна быть 3 или выше, чтобы оставить отзыв.");
+                return;
+            }
+
             if(this.name && this.review && this.rating) {
                 let productReview = {
                     name: this.name,
@@ -130,9 +137,9 @@
                 this.review = null
                 this.rating = null
             } else {
-                if(!this.name) this.errors.push("Name required.")
-                if(!this.review) this.errors.push("Review required.")
-                if(!this.rating) this.errors.push("Rating required.")
+                if(!this.name) this.errors.push("Требуется имя.")
+                if(!this.review) this.errors.push("Требуется комментарий.")
+                if(!this.rating) this.errors.push("Требуется оценка.")
             }
         }
     }
